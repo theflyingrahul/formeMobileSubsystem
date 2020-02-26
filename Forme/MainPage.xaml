@@ -1,7 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Forme.MainPage">
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="0, 25, 0, 0">
+            <Label Text="forme" FontSize="Title"/>
+        </StackLayout>
+        <TableView Intent="Settings">
+            <TableRoot>
+
+                <TableSection Title="Charging Status">
+                    <TextCell x:Name="levelProperty" Text="Level" Detail="Initialising..." />
+                    <TextCell x:Name="chargingProperty" Text="Status" Detail="Initialising..." />
+                    <TextCell x:Name="sourceProperty" Text="Source" Detail="Initialising..." />
+
+                </TableSection>
+
+
+
+
+                <!--<TableSection Title="Charging Status">
+                   <ViewCell>
+                          <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="19, 0, 19, 0">
+                              <Label Text="Level" />
+                              <Label x:Name="levelProperty" LineBreakMode="NoWrap" HorizontalTextAlignment="End" Text="Initialising..." TextColor="#a9a9a9"
+                                     HorizontalOptions="EndAndExpand"/>
+                          </StackLayout>
+                    </ViewCell>
+                    <ViewCell >
+                          <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center"  Padding="19, 0, 19, 0">
+                              <Label Text="Status" />
+                              <Label x:Name="chargingProperty" LineBreakMode="NoWrap" HorizontalTextAlignment="End" Text="Initialising..." TextColor="#a9a9a9"
+                                     HorizontalOptions="EndAndExpand"/>
+                          </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                          <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="19, 0, 19, 0">
+                              <Label Text="Source" />
+                              <Label x:Name="sourceProperty" LineBreakMode="NoWrap" HorizontalTextAlignment="End" Text="Initialising..." TextColor="#a9a9a9"
+                                     HorizontalOptions="EndAndExpand"/>
+                          </StackLayout>
+                    </ViewCell>
+
+                </TableSection>-->
+
+                <TableSection Title="Disconnect charger at">
+                    <SwitchCell x:Name="alarmSwitch" Text="Next Alarm" On="{Binding alarmBool}" Tapped="SwitchCellAlarm_Tapped"/>
+                    <SwitchCell x:Name="timeSwitch" Text="Custom Time" On="{Binding timeBool}" Tapped="SwitchCellTime_Tapped"/>
+                    <SwitchCell x:Name="fullSwitch" Text="Full Charge" On="{Binding fullBool}" Tapped="SwitchCellFull_Tapped"/>
+                </TableSection>
+
+
+                <!--<TableSection Title="Disconnect charger at">
+                    <ViewCell>
+                          <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="19, 0, 19, 0">
+                              <Label Text="Next Alarm" VerticalTextAlignment="Center"/>
+                              <CheckBox 
+                                        HorizontalOptions="EndAndExpand"/>
+                          </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                          <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="19, 0, 19, 0">
+                              <Label Text="Custom Time" VerticalTextAlignment="Center"/>
+                              <CheckBox 
+                                        HorizontalOptions="EndAndExpand"/>
+                          </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                          <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="19, 0, 19, 0">
+                              <Label Text="Full Charge" VerticalTextAlignment="Center"/>
+                              <CheckBox 
+                                        HorizontalOptions="EndAndExpand"/>
+                          </StackLayout>
+                    </ViewCell>
+                </TableSection>-->
+
+            </TableRoot>
+        </TableView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  Padding="0, 0, 0, 10">
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                <Button Text="start" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large" TextColor="#32CD32"
+                        Clicked="Start_Clicked"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                <Button Text="stop" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large" TextColor="#cf142b"
+                        Clicked="Stop_Clicked"/>
+            </StackLayout>
+        </StackLayout>
     </StackLayout>
 </ContentPage>
