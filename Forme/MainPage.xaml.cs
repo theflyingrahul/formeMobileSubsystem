@@ -133,6 +133,10 @@ namespace Forme
                     // Unable to detect power source
                     break;
             }
+
+            if (level == 100) {
+                Stop_Clicked(sender,e);
+            }
         }
 
         void Start_Clicked(System.Object sender, System.EventArgs e)
