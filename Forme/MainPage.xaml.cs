@@ -16,16 +16,11 @@ namespace Forme
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage,INotifyPropertyChanged
     {
-        Boolean alarmBool, timeBool, fullBool;
         public MainPage()
         {
             InitializeComponent();
 
             Battery.BatteryInfoChanged += Battery_BatteryInfoChanged;
-
-            alarmBool = true;
-            timeBool = false;
-            fullBool = false;
 
             var level = (int)((Battery.ChargeLevel*100)); // returns 0.0 to 1.0 or 1.0 when on AC or no battery.
             
@@ -33,24 +28,36 @@ namespace Forme
 
             levelProperty.Detail = level.ToString()+"%";
 
+            //if (level == 100)
+            //{
+            //    FormeNotCharging();
+            //}
+            //else {
+            //    FormeCharging();
+            //}
+
             switch (state)
             {
                 case BatteryState.Charging:
                     chargingProperty.Detail = "Charging";
+                    FormeCharging();
                     // Currently charging
                     break;
                 case BatteryState.Full:
                     chargingProperty.Detail = "Full";
+                    FormeNotCharging();
                     // Battery is full
                     break;
                 case BatteryState.Discharging:
                 case BatteryState.NotCharging:
                     chargingProperty.Detail = "Discharging";
+                    FormeNotCharging();
                     break;
                 case BatteryState.NotPresent:
                 // Battery doesn't exist in device (desktop computer)
                 case BatteryState.Unknown:
                     chargingProperty.Detail = "NA";
+                    FormeNotCharging();
                     break;
             }
 
@@ -146,65 +153,54 @@ namespace Forme
             {
                 wb.DownloadString("http://10.10.10.1/RELAY=ON");
             }
-            //using (var client = new HttpClient())
-            //{
-            //    // send a GET request  
-            //    var uri = new Uri("http://10.10.10.1/RELAY=ON");
-            //    await client.GetAsync(uri);
-            //}
+            FormeCharging();
+            
         }
+
         void Stop_Clicked(System.Object sender, System.EventArgs e)
         {
             using (var wb = new WebClient())
             {
                 wb.DownloadString("http://10.10.10.1/RELAY=OFF");
             }
-            //using (var client = new HttpClient())
-            //{
-            //    // send a GET request  
-            //    var uri = "http://10.10.10.1/RELAY=OFF";
-            //    await client.GetStringAsync(uri);
-            //}
+            FormeNotCharging();
         }
 
         void SwitchCellAlarm_Tapped(System.Object sender, System.EventArgs e)
         {
-            alarmBool = !alarmBool;
-            timeBool = false;
-            fullBool = false;
-
-            OnPropertyChanged("alarmBool");
-            OnPropertyChanged("timeBool");
-            OnPropertyChanged("fullBool");
+            alarmSwitch.On = true;
+            fullSwitch.On = false;
+            timeSwitch.On = false;
 
         }
+
         void SwitchCellTime_Tapped(System.Object sender, System.EventArgs e)
         {
-            timeBool = !timeBool;
-            fullBool = false;
-            alarmBool = false;
-
-            OnPropertyChanged("alarmBool");
-            OnPropertyChanged("timeBool");
-            OnPropertyChanged("fullBool");
+            alarmSwitch.On = false;
+            fullSwitch.On = false;
+            timeSwitch.On = true;
         }
+
         void SwitchCellFull_Tapped(System.Object sender, System.EventArgs e)
         {
-            fullBool = !fullBool;
-            timeBool = false;
-            alarmBool = false;
-
-            OnPropertyChanged("alarmBool");
-            OnPropertyChanged("timeBool");
-            OnPropertyChanged("fullBool");
+            alarmSwitch.On = false;
+            fullSwitch.On = true;
+            timeSwitch.On = false;
         }
-        public new event PropertyChangedEventHandler PropertyChanged;
-        protected override void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+
+        public void FormeCharging() {
+            stop.IsEnabled = true;
+            stop.TextColor = Color.Red;
+
+            start.IsEnabled = false;
+            start.TextColor = Color.Gray;
+        }
+        public void FormeNotCharging() {
+            start.IsEnabled = true;
+            start.TextColor = Color.LimeGreen;
+
+            stop.IsEnabled = false;
+            stop.TextColor = Color.Gray;
         }
     }
 }

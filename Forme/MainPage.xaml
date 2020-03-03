@@ -43,9 +43,9 @@
                 </TableSection>-->
 
                 <TableSection Title="Disconnect charger at">
-                    <SwitchCell x:Name="alarmSwitch" Text="Next Alarm" On="{Binding alarmBool}" Tapped="SwitchCellAlarm_Tapped"/>
-                    <SwitchCell x:Name="timeSwitch" Text="Custom Time" On="{Binding timeBool}" Tapped="SwitchCellTime_Tapped"/>
-                    <SwitchCell x:Name="fullSwitch" Text="Full Charge" On="{Binding fullBool}" Tapped="SwitchCellFull_Tapped"/>
+                    <SwitchCell x:Name="alarmSwitch" Text="Next Alarm" On="True" Tapped="SwitchCellAlarm_Tapped"/>
+                    <SwitchCell x:Name="timeSwitch" Text="Custom Time" On="False" Tapped="SwitchCellTime_Tapped"/>
+                    <SwitchCell x:Name="fullSwitch" Text="Full Charge" On="False" Tapped="SwitchCellFull_Tapped"/>
                 </TableSection>
 
 
@@ -78,11 +78,11 @@
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  Padding="0, 0, 0, 10">
             <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                 <Button Text="start" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large" TextColor="#32CD32"
-                        Clicked="Start_Clicked"/>
+                        Clicked="Start_Clicked" x:Name="start"/>
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                 <Button Text="stop" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large" TextColor="#cf142b"
-                        Clicked="Stop_Clicked"/>
+                        Clicked="Stop_Clicked" x:Name="stop"/>
             </StackLayout>
         </StackLayout>
     </StackLayout>
