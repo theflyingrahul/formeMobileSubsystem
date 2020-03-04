@@ -20,6 +20,11 @@ namespace Forme
         {
             InitializeComponent();
 
+            alarmSwitch.OnChanged += SwitchCellAlarm_Tapped;
+            fullSwitch.OnChanged += SwitchCellFull_Tapped;
+            timeSwitch.OnChanged += SwitchCellTime_Tapped;
+
+
             Battery.BatteryInfoChanged += Battery_BatteryInfoChanged;
 
             var level = (int)((Battery.ChargeLevel*100)); // returns 0.0 to 1.0 or 1.0 when on AC or no battery.
@@ -168,23 +173,25 @@ namespace Forme
 
         void SwitchCellAlarm_Tapped(System.Object sender, System.EventArgs e)
         {
-            alarmSwitch.On = true;
+            //SwitchCell c = (SwitchCell)sender;
+            //c.On = true;
             fullSwitch.On = false;
             timeSwitch.On = false;
-
         }
 
         void SwitchCellTime_Tapped(System.Object sender, System.EventArgs e)
         {
+            //SwitchCell c = (SwitchCell)sender;
+            //c.On = true;
             alarmSwitch.On = false;
             fullSwitch.On = false;
-            timeSwitch.On = true;
         }
 
         void SwitchCellFull_Tapped(System.Object sender, System.EventArgs e)
         {
+            //SwitchCell c = (SwitchCell)sender;
+            //c.On = true;
             alarmSwitch.On = false;
-            fullSwitch.On = true;
             timeSwitch.On = false;
         }
 

@@ -43,9 +43,9 @@
                 </TableSection>-->
 
                 <TableSection Title="Disconnect charger at">
-                    <SwitchCell x:Name="alarmSwitch" Text="Next Alarm" On="True" Tapped="SwitchCellAlarm_Tapped"/>
-                    <SwitchCell x:Name="timeSwitch" Text="Custom Time" On="False" Tapped="SwitchCellTime_Tapped"/>
-                    <SwitchCell x:Name="fullSwitch" Text="Full Charge" On="False" Tapped="SwitchCellFull_Tapped"/>
+                    <SwitchCell x:Name="alarmSwitch" Text="Next Alarm" On="False" />
+                    <SwitchCell x:Name="timeSwitch" Text="Custom Time" On="False" />
+                    <SwitchCell x:Name="fullSwitch" Text="Full Charge" On="True" />
                 </TableSection>
 
 
